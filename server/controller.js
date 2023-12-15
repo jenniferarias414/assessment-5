@@ -15,7 +15,12 @@ module.exports = {
                 name varchar
             );
 
-            *****YOUR CODE HERE*****
+             CREATE TABLE cities (
+                 city_id SERIAL PRIMARY KEY,
+                 name VARCHAR(100),
+               rating INTEGER,
+                country_id INTEGER
+              );
 
             insert into countries (name)
             values ('Afghanistan'),
