@@ -13,6 +13,29 @@ module.exports = {
         .catch(err => console.error(err))
     },
 
+    createCity: (req, res) => {
+        let {name, rating, countryId} = req.body
+
+        sequelize.query(`
+        INSERT INTO cities (name, rating, country_id)
+        VALUES ('${name}', ${rating}, ${countryId})
+        `)
+        .then(() => res.sendStatus(200))
+        .catch((err) => console.error(err))
+    },
+
+    getCities: (req, res) => {
+        sequelize.query(`
+        SELECT * FROM cities AS city
+        JOIN countries AS country
+        ON city.country_id = country.country_id
+        `)
+        .then(dbRes => {
+            res.status(200).send(dbRes[0])
+        })
+        .catch(err => console.error(err))
+    }, //shows in pdAdmin but displys 'undefined city/country names in browser
+
     seed: (req, res) => {
         sequelize.query(`
             drop table if exists cities;
