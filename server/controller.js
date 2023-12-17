@@ -29,12 +29,26 @@ module.exports = {
         SELECT * FROM cities AS city
         JOIN countries AS country
         ON city.country_id = country.country_id
+        ORDER BY city.rating DESC
         `)
         .then(dbRes => {
             res.status(200).send(dbRes[0])
         })
         .catch(err => console.error(err))
-    }, //shows in pdAdmin but displys 'undefined city/country names in browser
+    }, //shows in pdAdmin but displays 'undefined' city/country names in browser
+
+    deleteCity: (req, res) => {
+        const {id} = req.params
+
+        sequelize.query(`
+        DELETE FROM cities
+        WHERE city_id = ${id}
+        `)
+        .then(dbRes => {
+            res.status(200).send(dbRes[0])
+        })
+        .catch(err => console.error(err))
+    },
 
     seed: (req, res) => {
         sequelize.query(`
