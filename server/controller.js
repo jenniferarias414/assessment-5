@@ -67,6 +67,11 @@ module.exports = {
                 country_id INTEGER
               );
 
+            INSERT INTO cities (name, rating, country_id)
+            VALUES ('Buenos Aires', 3, 7),
+            ('Brussels', 4, 17),
+            ('Havana', 2, 43);
+
             insert into countries (name)
             values ('Afghanistan'),
             ('Albania'),
